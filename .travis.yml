@@ -1,0 +1,15 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t jsgr/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true jsgr/react-test npm test
+
+after_success:
+  - docker build -t jsgr/multi-app-client ./client
+  - docker build -t jsgr/multi-app-server ./server
+  - docker build -t jsgr/multi-app-worker ./worker
