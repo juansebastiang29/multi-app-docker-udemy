@@ -15,7 +15,7 @@ after_success:
   - docker build -t jsebastiang/multi-app-server ./server
   - docker build -t jsebastiang/multi-app-worker ./worker
   # login into the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #take those images and push them to docker hub
   - docker push jsebastiang/multi-app-client
   - docker push jsebastiang/multi-app-nginx
