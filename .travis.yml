@@ -22,3 +22,14 @@ after_success:
   - docker push jsebastiang/multi-app-server
   - docker push jsebastiang/multi-app-worker
 
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "multi-container-app"
+  env: "Multicontainerapp-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-136824170700"
+  bucket_path: "docker-multi"
+  on:
+    branch: "master"
+  access_key_id: "$AWS_ACESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
