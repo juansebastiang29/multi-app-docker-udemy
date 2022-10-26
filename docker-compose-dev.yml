@@ -16,8 +16,6 @@ services:
       context: ./nginx
     ports:
       - '3050:80'
-    environment:
-      - WDS_SOCKET_PORT=0
   api:
     build:
       dockerfile: Dockerfile.dev
@@ -34,6 +32,8 @@ services:
       - PGPASSWORD=postgres_password
       - PGPORT=5432
   client:
+    environment:
+      - WDS_SOCKET_PORT=0
     build:
       dockerfile: Dockerfile.dev
       context: ./client
